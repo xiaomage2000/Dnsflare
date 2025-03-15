@@ -229,7 +229,7 @@ function changeSize(pageSize: number) {
 }
 
 async function doDeleteRecord(record: CloudflareDnsRecord) {
-    const deleteError = await deleteRecord(record)
+    const deleteError = await deleteRecord(props.zoneId, record)
 
     if (deleteError) {
         ElMessage({
