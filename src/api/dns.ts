@@ -101,13 +101,13 @@ type EditDnsRecordRequest = {
 }
 
 
-export async function patchRecord(record: CloudflareDnsRecord, editRequest: EditDnsRecordRequest) {
+export async function patchRecord(zoneId:string, record: CloudflareDnsRecord, editRequest: EditDnsRecordRequest) {
     const axios = useAxios()
     try {
         await axios.request({
             method: 'patch',
             data: editRequest,
-            url: `/zones/${record.zoneId}/dns_records/${record.id}`,
+            url: `/zones/${zoneId}/dns_records/${record.id}`,
         })
     } catch (err) {
         return err.response.data.errors[0].message
